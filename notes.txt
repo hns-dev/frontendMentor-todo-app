@@ -1,0 +1,55 @@
+Step 1: Break The UI Into A Component Hierarchy
+
+- App: contain the entire page
+- Mode: change mode (light/dark)
+- TodoInput: receive user input
+- TodoList: display & filter todo list based on user choice
+- TodoRow: display a single todo + delete + mark as complete
+- TodoListFooter: display a stat & allow the user to clear completed todos
+                      - Stat
+                      - ClearButton
+- ToDoListFilter: allow the user to filter todo list
+
+
+###arrange them into a hierarchy
+
+- App
+        - Mode
+        - TodoInput
+        - TodoList
+                - Todo
+                - TodoListFooter
+                        - Stat
+                        - ClearButton
+                - FilterList
+
+
+
+////////////////////////
+
+
+
+
+Step 2: Build A Static Version in React
+
+
+
+
+///////////////////////
+
+Step 3: Identify The Minimal (but complete) Representation Of UI State
+
+- Dark mode option 
+- the input text the user has entered
+- the list of todos
+- the value of the checkbox (to mark a todo as completed)
+- the cross icon (to delete a todo)
+- the number of uncompleted todos
+- the button to clear completed todos
+- the three buttons to filter the todo list
+
+My state is:
+- Dark mode option 
+- the input text the user has entered
+- the list of todos
+- the value of the checkbox (to mark a todo as completed) X
