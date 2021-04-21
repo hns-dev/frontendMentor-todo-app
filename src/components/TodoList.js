@@ -32,7 +32,7 @@ export default function TodoList({
     <>
       {todos.length > 0
         ? todos.map((todo, index) => (
-            <Draggable key={todo.id} draggableId={todo.title} index={index}>
+            <Draggable key={todo.title} draggableId={todo.title} index={index}>
               {(provided) => (
                 <div
                   ref={provided.innerRef}

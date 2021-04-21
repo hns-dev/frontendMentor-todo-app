@@ -4,7 +4,7 @@ export default function todo({ todo, onDeleteTodo, onCompletedTodo }) {
       {/* Check Icon */}
       <button
         className={`checkmark ${todo.completed ? "completed" : ""}`}
-        onClick={() => onCompletedTodo(todo.id)}
+        onClick={() => onCompletedTodo(todo.title)}
       >
         <div
           className={`checkmark-inner ${todo.completed ? "completed" : ""}`}
@@ -26,7 +26,10 @@ export default function todo({ todo, onDeleteTodo, onCompletedTodo }) {
       <li className={`${todo.completed ? "completed" : ""}`}>{todo.title}</li>
 
       {/* Cross Icon */}
-      <button className="cross-icon push" onClick={() => onDeleteTodo(todo.id)}>
+      <button
+        className="cross-icon push"
+        onClick={() => onDeleteTodo(todo.title)}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
           <path
             fill="#494C6B"

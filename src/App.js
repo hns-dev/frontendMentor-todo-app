@@ -7,102 +7,51 @@ import TodoListFooter from "./components/TodoListFooter";
 import FilterList from "./components/FilterList";
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [darkMode, setDarkMode] = useState(() => {
+    const localData = localStorage.getItem("darkMode");
+    return localData ? JSON.parse(localData) : false;
+  });
 
-  const [darkMode, setDarkMode] = useState(false);
-
+  // Set & Update Local Storage
   useEffect(() => {
-    const getTodoList = async () => {
-      const todoListFromServer = await fetchTodoList();
-      setTodoList(todoListFromServer);
-    };
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
-    getTodoList();
-  }, []);
+  // const [todoList, setTodoList] = useState([]);
 
-  // Fetch todolist
-  const fetchTodoList = async () => {
-    const res = await fetch("http://localhost:5000/todoList");
-    const data = await res.json();
+  const [todoList, setTodoList] = useState(() => {
+    const localData = localStorage.getItem("todoList");
+    return localData ? JSON.parse(localData) : [];
+  });
 
-    return data;
-  };
-
-  // Fetch a todo
-  const fetchTodo = async (id) => {
-    const res = await fetch(`http://localhost:5000/todoList/${id}`);
-    const data = await res.json();
-
-    return data;
-  };
+  // Set & Update Local Storage
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   // Add todo to the list
   const handleAddTodo = async (userInputTodo) => {
-    const res = await fetch("http://localhost:5000/todoList", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInputTodo),
-    });
-    const data = await res.json();
-
-    setTodoList([...todoList, data]);
-
-    // const newTodo = userInputTodo;
-    // setTodoList([...todoList, newTodo]);
+    setTodoList([...todoList, userInputTodo]);
   };
 
   // Delete a todo from the list
-  const handleDeleteTodo = async (id) => {
-    deleteTodo(id);
-    // await fetch(`http://localhost:5000/todoList/${id}`, {
-    //   method: "DELETE",
-    // });
-
-    setTodoList(todoList.filter((todo) => todo.id !== id));
+  const handleDeleteTodo = async (title) => {
+    setTodoList(todoList.filter((todo) => todo.title !== title));
   };
 
-  const deleteTodo = async (id) => {
-    await fetch(`http://localhost:5000/todoList/${id}`, {
-      method: "DELETE",
-    });
-  };
-
-  async function handleclearCompleted() {
-    // const data = await fetchTodoList();
-
-    // data.forEach((todo) => {
-    //   if (todo.completed) {
-    //     console.log(todo);
-    //     // deleteTodo(todo.id);
-    //   }
-    // });
-
+  // Delete all completed todos
+  function handleclearCompleted() {
     setTodoList(todoList.filter((todo) => !todo.completed));
   }
 
   // Update todo's completed value
-  async function handleCompletedTodo(id) {
-    const todoToUpdate = await fetchTodo(id);
-    const updatedTodo = { ...todoToUpdate, completed: !todoToUpdate.completed };
-
-    const res = await fetch(`http://localhost:5000/todoList/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(updatedTodo),
-    });
-
-    const data = await res.json();
-
+  async function handleCompletedTodo(title) {
     setTodoList(
       todoList.map((todo) =>
-        todo.id === id ? { ...todo, completed: data.completed } : todo
+        todo.title === title ? { ...todo, completed: !todo.completed } : todo
       )
     );
   }
-
-  // Delete all completed todos
 
   // Update dark mode setting
   function handleDarkModeChange() {

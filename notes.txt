@@ -53,3 +53,32 @@ My state is:
 - the input text the user has entered
 - the list of todos
 - the value of the checkbox (to mark a todo as completed) X
+
+
+///////////////////////
+
+Components
+- TodoInput
+- TodoList
+        - Todo
+        - TodoListFooter
+        - FilterList
+- Mode
+
+
+### HTML structure
+
+- header (h1 + button(darkmode icon))
+
+- main
+  - Form (circle icon + input box)
+
+  - div
+      - ul (todolist)
+        - li
+            - div (checkbox input + todo text + delete icon)
+      - footer (stat + button (delete completed todos))
+
+  - div (3 links: all/active/completed)
+
+  - p (Drag & Drop text)
