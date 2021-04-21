@@ -11,7 +11,7 @@ export default function TodoInput({ onAddTodo }) {
       return;
     }
 
-    onAddTodo(todoInput);
+    onAddTodo({ title: todoInput, completed: false });
 
     setTodoInput("");
   }

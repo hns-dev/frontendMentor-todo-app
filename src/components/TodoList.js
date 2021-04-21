@@ -1,51 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
+import { Draggable } from "react-beautiful-dnd";
 import Todo from "./Todo";
-import TodoListFooter from "./TodoListFooter";
-import FilterList from "./FilterList";
 
 export default function TodoList({
   todoList,
+  todos,
   onDeleteTodo,
   onCompletedTodo,
   onCleareCompleted,
 }) {
-  const [filterOption, setFilterOption] = useState("All");
-  let todos = [];
+  // const [filterOption, setFilterOption] = useState("All");
+  // let todos = [];
 
-  todoList.forEach((todo) => {
-    if (filterOption === "Active") {
-      todos = todoList.filter((todo) => !todo.completed);
-    } else if (filterOption === "Completed") {
-      todos = todoList.filter((todo) => todo.completed);
-    } else {
-      todos = [...todoList];
-    }
-  });
+  // todoList.forEach((todo) => {
+  //   if (filterOption === "Active") {
+  //     todos = todoList.filter((todo) => !todo.completed);
+  //   } else if (filterOption === "Completed") {
+  //     todos = todoList.filter((todo) => todo.completed);
+  //   } else {
+  //     todos = [...todoList];
+  //   }
+  // });
 
-  function handleFilterOptionChange(filterText) {
-    setFilterOption(filterText);
-  }
+  // function handleFilterOptionChange(filterText) {
+  //   setFilterOption(filterText);
+  // }
 
   return (
-    <div>
-      <div className="dark-bg todolist">
-        {todos.map((todo) => (
-          <Todo
-            key={todo.title}
-            todo={todo}
-            onDeleteTodo={onDeleteTodo}
-            onCompletedTodo={onCompletedTodo}
-          />
-        ))}
-
-        <TodoListFooter
-          todoList={todoList}
-          onCleareCompleted={onCleareCompleted}
-        />
-      </div>
-
-      {/* Filter Options */}
-      <FilterList onfilterChange={handleFilterOptionChange} />
-    </div>
+    // <div>
+    //   <div className="dark-bg todolist">
+    <>
+      {todos.length > 0
+        ? todos.map((todo, index) => (
+            <Draggable key={todo.id} draggableId={todo.title} index={index}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                >
+                  <Todo
+                    todo={todo}
+                    onDeleteTodo={onDeleteTodo}
+                    onCompletedTodo={onCompletedTodo}
+                  />
+                </div>
+              )}
+            </Draggable>
+          ))
+        : "Your todo list is empty!"}
+    </>
   );
 }

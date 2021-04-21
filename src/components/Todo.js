@@ -1,10 +1,10 @@
 export default function todo({ todo, onDeleteTodo, onCompletedTodo }) {
   return (
-    <div className="list-item">
+    <div className="list-item dark-bg">
       {/* Check Icon */}
       <button
         className={`checkmark ${todo.completed ? "completed" : ""}`}
-        onClick={() => onCompletedTodo(todo.title, !todo.completed)}
+        onClick={() => onCompletedTodo(todo.id)}
       >
         <div
           className={`checkmark-inner ${todo.completed ? "completed" : ""}`}
@@ -26,10 +26,7 @@ export default function todo({ todo, onDeleteTodo, onCompletedTodo }) {
       <li className={`${todo.completed ? "completed" : ""}`}>{todo.title}</li>
 
       {/* Cross Icon */}
-      <button
-        className="cross-icon push"
-        onClick={() => onDeleteTodo(todo.title)}
-      >
+      <button className="cross-icon push" onClick={() => onDeleteTodo(todo.id)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
           <path
             fill="#494C6B"
