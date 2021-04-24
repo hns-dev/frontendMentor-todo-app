@@ -7,71 +7,87 @@ import TodoListFooter from "./components/TodoListFooter";
 import FilterList from "./components/FilterList";
 
 function App() {
+  // ################### States ###################
+
+  // Dark mode state
   const [darkMode, setDarkMode] = useState(() => {
     const localData = localStorage.getItem("darkMode");
     return localData ? JSON.parse(localData) : false;
   });
 
-  // Set & Update Local Storage
-  useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
-
-  // const [todoList, setTodoList] = useState([]);
-
+  // Todolist state
   const [todoList, setTodoList] = useState(() => {
     const localData = localStorage.getItem("todoList");
     return localData ? JSON.parse(localData) : [];
   });
 
-  // Set & Update Local Storage
+  // filtering option state
+  const [filterOption, setFilterOption] = useState("All");
+
+  // ################### Effects ###################
+
+  // Handle darkmode side effect
+  useEffect(() => {
+    darkMode
+      ? document.body.classList.add("darkmode")
+      : document.body.classList.remove("darkmode");
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  // Handle todolist side effect
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
   }, [todoList]);
+
+  // ################### Functions ###################
 
   // Add todo to the list
   const handleAddTodo = async (userInputTodo) => {
     setTodoList([...todoList, userInputTodo]);
   };
 
-  // Delete a todo from the list
+  // Delete todo from the list
   const handleDeleteTodo = async (title) => {
     setTodoList(todoList.filter((todo) => todo.title !== title));
   };
 
   // Delete all completed todos
-  function handleclearCompleted() {
+  const handleclearCompleted = () => {
     setTodoList(todoList.filter((todo) => !todo.completed));
-  }
+  };
 
   // Update todo's completed value
-  async function handleCompletedTodo(title) {
+  const handleCompletedTodo = async (title) => {
     setTodoList(
       todoList.map((todo) =>
         todo.title === title ? { ...todo, completed: !todo.completed } : todo
       )
     );
-  }
+  };
 
   // Update dark mode setting
-  function handleDarkModeChange() {
+  const handleDarkModeChange = () => {
     setDarkMode(!darkMode);
-  }
+  };
 
-  // Lifting state up
-  const [filterOption, setFilterOption] = useState("All");
-  let todos = [];
+  // Filtering todo list
+  const filterTodolist = () => {
+    let todos = [];
 
-  todoList.forEach((todo) => {
-    if (filterOption === "Active") {
-      todos = todoList.filter((todo) => !todo.completed);
-    } else if (filterOption === "Completed") {
-      todos = todoList.filter((todo) => todo.completed);
-    } else {
-      todos = [...todoList];
-    }
-  });
+    todoList.forEach((todo) => {
+      if (filterOption === "Active") {
+        todos = todoList.filter((todo) => !todo.completed);
+      } else if (filterOption === "Completed") {
+        todos = todoList.filter((todo) => todo.completed);
+      } else {
+        todos = [...todoList];
+      }
+    });
 
+    return todos;
+  };
+
+  // handle filter options change
   function handleFilterOptionChange(filterText) {
     setFilterOption(filterText);
   }
@@ -99,31 +115,37 @@ function App() {
   }
 
   return (
-    <main>
-      <div className="container">
-        {/* Header */}
-        <header className="heading row">
-          <h1>todo</h1>
+    <>
+      <header>
+        <div className="container row">
+          <h1 className="heading">todo</h1>
           <Mode darkMode={darkMode} onDarkModeChange={handleDarkModeChange} />
-        </header>
+        </div>
+      </header>
 
-        {/* Form - input */}
-        <TodoInput onAddTodo={handleAddTodo} />
+      <main>
+        <div className="container">
+          {/* Form - input */}
+          <TodoInput onAddTodo={handleAddTodo} />
 
-        <div>
-          <div className="dark-bg todolist">
+          {/* Todolist container */}
+          <div className="dark-bg todolist list-container">
             <DragDropContext onDragEnd={handleOnDragEnd}>
               <Droppable droppableId="dropList">
                 {(provided) => (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                  <ul
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className="todo-list"
+                  >
                     <TodoList
                       todoList={todoList}
-                      todos={todos}
+                      todos={filterTodolist()}
                       onDeleteTodo={handleDeleteTodo}
                       onCompletedTodo={handleCompletedTodo}
                     />
                     {provided.placeholder}
-                  </div>
+                  </ul>
                 )}
               </Droppable>
             </DragDropContext>
@@ -134,38 +156,18 @@ function App() {
               onCleareCompleted={handleclearCompleted}
             />
           </div>
-          <FilterList onfilterChange={handleFilterOptionChange} />
+
+          {/* Filter Options */}
+          <FilterList
+            onfilterChange={handleFilterOptionChange}
+            filterOption={filterOption}
+          />
+
+          <p className="drag-drop">Drag and drop to reorder list</p>
         </div>
-
-        {/* Todo List */}
-        {/* <TodoList
-          todoList={todoList}
-          onDeleteTodo={handleDeleteTodo}
-          onCompletedTodo={handleCompletedTodo}
-          onCleareCompleted={handleclearCompleted}
-        /> */}
-
-        {/* Filter Options */}
-        {/* <FilterList /> */}
-
-        <p className="drag-drop">Drag and drop to reorder list</p>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 
 export default App;
-
-/*
-Todo
-
-  <!-- Add dynamic number --> items left
-
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-*/

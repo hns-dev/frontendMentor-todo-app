@@ -1,15 +1,12 @@
 export default function todo({ todo, onDeleteTodo, onCompletedTodo }) {
   return (
-    <div className="list-item dark-bg">
-      {/* Check Icon */}
+    <div className="list-item row">
+      {/* Checkbox Button */}
       <button
         className={`checkmark ${todo.completed ? "completed" : ""}`}
         onClick={() => onCompletedTodo(todo.title)}
       >
-        <div
-          className={`checkmark-inner ${todo.completed ? "completed" : ""}`}
-        ></div>
-        {todo.completed && (
+        {todo.completed ? (
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
             <path
               fill="none"
@@ -18,19 +15,29 @@ export default function todo({ todo, onDeleteTodo, onCompletedTodo }) {
               d="M1 4.304L3.696 7l6-6"
             />
           </svg>
+        ) : (
+          <div className="checkmark-inner"></div>
         )}
         <input type="checkbox" />
       </button>
 
-      {/* List Item*/}
-      <li className={`${todo.completed ? "completed" : ""}`}>{todo.title}</li>
+      {/* Item text*/}
+      <p className={`todo-text ${todo.completed ? "completed" : ""}`}>
+        {todo.title}
+      </p>
 
-      {/* Cross Icon */}
+      {/* Delete Button */}
       <button
         className="cross-icon push"
         onClick={() => onDeleteTodo(todo.title)}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <svg
+          className="delete-icon"
+          viewBox="0 0 18 18"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+        >
           <path
             fill="#494C6B"
             fillRule="evenodd"
