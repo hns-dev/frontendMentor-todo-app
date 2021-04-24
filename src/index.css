@@ -1,6 +1,6 @@
 :root {
-  --bg-color: hsl(0, 0%, 98%);
-  --body-bg-color: hsl(236, 33%, 92%);
+  --bg-color: hsl(0, 0%, 100%);
+  --body-bg-color: hsl(0, 0%, 98%);
   --general-text: hsl(235, 19%, 35%);
   --main-heading: hsl(0, 0%, 98%);
   --checkmark-bg: hsl(233, 11%, 84%);
@@ -14,6 +14,7 @@
   --btn-color: hsl(236, 9%, 61%);
   --hover-color: hsl(235, 19%, 35%);
   --btn-active: hsl(220, 98%, 61%);
+  --box-shadow: 0px 5px 10px hsl(233, 11%, 84%);
   --bg-desktop: url("./images/bg-desktop-light.jpg");
   --bg-mobile: url("./images/bg-mobile-light.jpg");
 }
@@ -33,6 +34,7 @@
   --border-color: hsl(237, 14%, 26%);
   --btn-color: hsl(234, 11%, 52%);
   --hover-color: hsl(236, 33%, 92%);
+  --box-shadow: 0px 5px 15px hsl(240, 22%, 7%);
   --bg-desktop: url("./images/bg-desktop-dark.jpg");
   --bg-mobile: url("./images/bg-mobile-dark.jpg");
 }
@@ -194,6 +196,7 @@ input[type="checkbox"] {
   overflow: hidden;
   margin: 1.5rem 0;
   text-align: center;
+  box-shadow: var(--box-shadow);
 }
 
 .display-msg {
@@ -224,6 +227,7 @@ input[type="checkbox"] {
 .filter {
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  box-shadow: var(--box-shadow);
 }
 .filter.row {
   justify-content: center;
