@@ -10,6 +10,7 @@ export default function Mode({ darkMode, onDarkModeChange }) {
 
   return (
     <button
+      aria-label="dark mode toggle"
       onClick={() => {
         toggleBodyDarkmode();
         onDarkModeChange();
