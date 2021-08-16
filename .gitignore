@@ -40,3 +40,5 @@ yarn-error.log*
 .prettierignore
 
 README.md
+
+note.txt
