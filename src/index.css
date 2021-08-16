@@ -11,9 +11,9 @@
   );
   --checkmark-inner-bg: hsl(236, 33%, 92%);
   --border-color: hsl(236, 33%, 92%);
-  --btn-color: hsl(236, 9%, 61%);
+  --btn-color: hsl(240, 9%, 37%);
   --hover-color: hsl(235, 19%, 35%);
-  --btn-active: hsl(220, 98%, 61%);
+  --btn-active: hsl(220, 98%, 43%);
   --box-shadow: 0px 5px 10px hsl(233, 11%, 84%);
   --bg-desktop: url("./images/bg-desktop-light.jpg");
   --bg-mobile: url("./images/bg-mobile-light.jpg");
@@ -32,8 +32,9 @@
   );
   --checkmark-inner-bg: hsl(237, 14%, 26%);
   --border-color: hsl(237, 14%, 26%);
-  --btn-color: hsl(234, 11%, 52%);
+  --btn-color: hsl(218, 8%, 72%);
   --hover-color: hsl(236, 33%, 92%);
+  --btn-active: hsl(220, 96%, 78%);
   --box-shadow: 0px 5px 15px hsl(240, 22%, 7%);
   --bg-desktop: url("./images/bg-desktop-dark.jpg");
   --bg-mobile: url("./images/bg-mobile-dark.jpg");

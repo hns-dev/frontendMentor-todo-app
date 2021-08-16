@@ -11,7 +11,7 @@ The designs were created to the following widths:
 
 ### Primary
 
-- Bright Blue: hsl(220, 98%, 61%)
+- Bright Blue: hsl(220, 98%, 61%) /// light: #024AD9 hsl(220, 98%, 43%), dark: #90B5FD hsl(220, 96%, 78%)
 - Check Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)
 
 ### Neutral
@@ -21,7 +21,7 @@ The designs were created to the following widths:
 - Very Light Gray: hsl(0, 0%, 98%)
 - Very Light Grayish Blue: hsl(236, 33%, 92%)
 - Light Grayish Blue: hsl(233, 11%, 84%)
-- Dark Grayish Blue: hsl(236, 9%, 61%)
+- Dark Grayish Blue: hsl(236, 9%, 61%) ////// #565667 hsl(240, 9%, 37%)
 - Very Dark Grayish Blue: hsl(235, 19%, 35%)
 
 ### Dark Theme
@@ -30,7 +30,7 @@ The designs were created to the following widths:
 - Very Dark Desaturated Blue: hsl(235, 24%, 19%)
 - Light Grayish Blue: hsl(234, 39%, 85%)
 - Light Grayish Blue (hover): hsl(236, 33%, 92%)
-- Dark Grayish Blue: hsl(234, 11%, 52%)
+- Dark Grayish Blue: hsl(234, 11%, 52%) ////// #B2B6BD hsl(218, 8%, 72%)
 - Very Dark Grayish Blue: hsl(233, 14%, 35%)
 - Very Dark Grayish Blue: hsl(237, 14%, 26%)
 
