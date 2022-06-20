@@ -19,7 +19,7 @@
   --bg-mobile: url("./images/bg-mobile-light.jpg");
 }
 
-.darkmode {
+.dark {
   --body-bg-color: hsl(235, 21%, 11%);
   --bg-color: hsl(235, 24%, 19%);
   --general-text: hsl(234, 39%, 85%);
