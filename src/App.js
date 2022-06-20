@@ -5,36 +5,22 @@ import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import TodoListFooter from "./components/TodoListFooter";
 import FilterList from "./components/FilterList";
+import useDarkMode from "./hooks/useDarkMode";
 
 function App() {
   // ################### States ###################
 
-  // Dark mode state
-  const [darkMode, setDarkMode] = useState(() => {
-    const localData = localStorage.getItem("darkMode");
-    return localData ? JSON.parse(localData) : false;
-  });
+  const { darkMode, setDarkMode } = useDarkMode("body");
 
-  // Todolist state
   const [todoList, setTodoList] = useState(() => {
     const localData = localStorage.getItem("todoList");
     return localData ? JSON.parse(localData) : [];
   });
 
-  // filtering option state
   const [filterOption, setFilterOption] = useState("All");
 
   // ################### Effects ###################
 
-  // Handle darkmode side effect
-  useEffect(() => {
-    darkMode
-      ? document.body.classList.add("darkmode")
-      : document.body.classList.remove("darkmode");
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
-
-  // Handle todolist side effect
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
   }, [todoList]);
