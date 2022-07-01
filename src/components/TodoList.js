@@ -1,32 +1,40 @@
 import React from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+
 import Todo from "./Todo";
 
-export default function TodoList({ todos, onDeleteTodo, onCompletedTodo }) {
+export default function TodoList({
+  onDragEnd,
+  todos,
+  onDeleteTodo,
+  onTodoStatusChange,
+}) {
   return (
-    <>
-      {todos.length > 0 ? (
-        todos.map((todo, index) => (
-          <Draggable key={todo.title} draggableId={todo.title} index={index}>
-            {(provided) => (
-              <li
-                ref={provided.innerRef}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                className="todo-item"
-              >
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="dropList">
+        {(provided) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className="list surface-color box-shadow"
+          >
+            {todos.length > 0 ? (
+              todos.map((todo, index) => (
                 <Todo
+                  key={todo.title}
+                  index={index}
                   todo={todo}
                   onDeleteTodo={onDeleteTodo}
-                  onCompletedTodo={onCompletedTodo}
+                  onTodoStatusChange={onTodoStatusChange}
                 />
-              </li>
+              ))
+            ) : (
+              <p className="msg text-center">Your list is empty!</p>
             )}
-          </Draggable>
-        ))
-      ) : (
-        <p className="display-msg">There's nothing to show!</p>
-      )}
-    </>
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 }
