@@ -1,11 +1,18 @@
-import React from "react";
+import ActiveTodosCount from "./ActiveTodosCount";
+import ClearCompletedTodos from "./ClearCompletedTodos";
+import FilterList from "./FilterList";
 
-export default function TodoListFooter({ todoList, onCleareCompleted }) {
-  const uncompleted = todoList.filter((todo) => !todo.completed).length;
+export default function TodoListFooter({
+  todos,
+  onFilterChange,
+  filterOption,
+  onCleareCompleted,
+}) {
   return (
-    <div className="list-footer row">
-      <p className="acitve-todos-count">{uncompleted} items left</p>
-      <button onClick={() => onCleareCompleted()}>Clear Completed</button>
-    </div>
+    <footer className="list-footer grid text-on-background">
+      <ActiveTodosCount todos={todos} />
+      <FilterList onFilterChange={onFilterChange} filterOption={filterOption} />
+      <ClearCompletedTodos onCleareCompleted={onCleareCompleted} />
+    </footer>
   );
 }
