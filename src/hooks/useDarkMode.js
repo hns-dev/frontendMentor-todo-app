@@ -13,5 +13,9 @@ export default function useDarkMode(element) {
     darkMode ? ele.classList.add("dark") : ele.classList.remove("dark");
   }, [darkMode, element]);
 
-  return { darkMode, setDarkMode };
+  const handleDarkModeChange = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return { darkMode, handleDarkModeChange };
 }
