@@ -9,7 +9,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Continued development](#continued-development)
 
 ## Overview
 
@@ -30,7 +29,6 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
 - Live Site URL: [Add live site URL here](https://frontend-mentor-todo-app-rho.vercel.app/)
 
 ## My process
@@ -43,8 +41,3 @@ Users should be able to:
 - Mobile-first workflow
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - To implement drag-and-drop feature
 - localStorage - To save user's todo list and color theme preference
-
-### Continued development
-
-- write more organized, high-quality and clean code
-- Build this project as a MERN application
