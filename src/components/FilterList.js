@@ -1,23 +1,23 @@
 import React from "react";
 
-export default function FilterList({ onfilterChange, filterOption }) {
+export default function FilterList({ onFilterChange, filterOption }) {
   return (
-    <div className="dark-bg row filter">
+    <div className="filter-list flex surface-color padding-y">
       <button
-        className={`${filterOption === "All" ? "active-btn" : ""}`}
-        onClick={() => onfilterChange("All")}
+        className={`btn ${filterOption === "All" ? "active-btn" : ""}`}
+        onClick={() => onFilterChange("All")}
       >
         All
       </button>
       <button
-        className={`${filterOption === "Active" ? "active-btn" : ""}`}
-        onClick={() => onfilterChange("Active")}
+        className={`btn ${filterOption === "Active" ? "active-btn" : ""}`}
+        onClick={() => onFilterChange("Active")}
       >
         Active
       </button>
       <button
-        className={`${filterOption === "Completed" ? "active-btn" : ""}`}
-        onClick={() => onfilterChange("Completed")}
+        className={`btn ${filterOption === "Completed" ? "active-btn" : ""}`}
+        onClick={() => onFilterChange("Completed")}
       >
         Completed
       </button>
