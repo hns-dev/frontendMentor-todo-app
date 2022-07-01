@@ -18,7 +18,7 @@ export default function TodoInput({ onAddTodo }) {
 
   return (
     <form onSubmit={onFormSubmit}>
-      <div className="form-control row dark-bg">
+      <div className="form-control flex surface-color border-radius padding">
         <div className="checkmark">
           <div className="checkmark-inner"></div>
         </div>
@@ -26,7 +26,6 @@ export default function TodoInput({ onAddTodo }) {
         <input
           type="text"
           placeholder="Create a new todo..."
-          className="dark-bg"
           value={todoInput}
           onChange={(e) => setTodoInput(e.target.value)}
         />
