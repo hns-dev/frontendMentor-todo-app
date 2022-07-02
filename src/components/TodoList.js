@@ -16,7 +16,7 @@ export default function TodoList({
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="list surface-color box-shadow"
+            className="list surface-color"
           >
             {todos.length > 0 ? (
               todos.map((todo, index) => (

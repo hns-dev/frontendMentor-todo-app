@@ -49,21 +49,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p {
   margin: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul {
-  list-style: none;
+  padding: 0;
 }
 
 /* Set core body defaults */
@@ -159,15 +146,6 @@ button {
   margin-block: 1.5rem;
 }
 
-.box-shadow {
-  box-shadow: var(--box-shadow-color) 0px 2px 8px 0px;
-}
-
-.border-radius {
-  border-radius: 5px;
-  overflow: hidden;
-}
-
 .padding {
   padding: 1rem;
 }
@@ -230,7 +208,6 @@ form .form-control.flex {
 
 form input[type="text"] {
   width: 100%;
-  border-radius: 5px;
 }
 
 form input[type="text"]::placeholder {
@@ -307,45 +284,49 @@ input[type="checkbox"] {
 }
 
 /* List footer */
+.list-footer {
+  flex-direction: column;
+}
+
+.list-footer .content {
+  --gap: 0;
+}
+
+.list-footer .content > *,
+.list-footer > * {
+  width: 100%;
+}
 
 .active-todos-count {
-  grid-area: stat;
   padding-left: 1rem;
-  border-bottom-left-radius: 5px;
 }
 
 .btn-clear-completed-todos {
-  grid-area: clear;
-  display: grid;
-  justify-content: end;
-  padding-right: 1.5rem;
-  border-bottom-right-radius: 5px;
+  padding-right: 1rem;
+  text-align: right;
 }
 
 .filter-list {
-  grid-area: filter;
+  --gap: 0;
   justify-content: center;
-  margin-top: 1rem;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 
-.list-footer {
-  --gap: 0;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    "stat clear"
-    "filter filter";
+.filter-list > * {
+  padding-inline: 0.5rem;
 }
 
 @media (min-width: 640px) {
   .list-footer {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "stat filter clear";
+    --gap: 0;
+    flex-direction: row;
   }
 
+  .list-footer .content {
+    display: contents;
+  }
+
+  .active-todos-count,
   .filter-list {
-    margin-top: 0;
-    border-radius: 0;
+    order: -1;
   }
 }

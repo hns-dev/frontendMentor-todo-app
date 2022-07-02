@@ -100,20 +100,18 @@ export default function FilterableTodoList() {
       <div className="container">
         <TodoInput onAddTodo={handleAddTodo} />
 
-        <div className="border-radius">
-          <TodoList
-            onDragEnd={handleOnDragEnd}
-            todos={filterTodolist()}
-            onDeleteTodo={handleDeleteTodo}
-            onTodoStatusChange={handleTodoStatus}
-          />
-          <TodoListFooter
-            todos={todoList}
-            onFilterChange={handleFilterOptionChange}
-            filterOption={filterOption}
-            onCleareCompleted={handleclearCompleted}
-          />
-        </div>
+        <TodoList
+          onDragEnd={handleOnDragEnd}
+          todos={filterTodolist()}
+          onDeleteTodo={handleDeleteTodo}
+          onTodoStatusChange={handleTodoStatus}
+        />
+        <TodoListFooter
+          todos={todoList}
+          onFilterChange={handleFilterOptionChange}
+          filterOption={filterOption}
+          onCleareCompleted={handleclearCompleted}
+        />
 
         <p className="msg msg-margin text-center text-on-surface-dim">
           Drag and drop to reorder list

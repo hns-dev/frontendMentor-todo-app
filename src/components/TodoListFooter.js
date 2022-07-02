@@ -9,10 +9,12 @@ export default function TodoListFooter({
   onCleareCompleted,
 }) {
   return (
-    <footer className="list-footer grid text-on-background">
-      <ActiveTodosCount todos={todos} />
+    <footer className="list-footer flex text-on-background">
+      <div className="content flex">
+        <ActiveTodosCount todos={todos} />
+        <ClearCompletedTodos onCleareCompleted={onCleareCompleted} />
+      </div>
       <FilterList onFilterChange={onFilterChange} filterOption={filterOption} />
-      <ClearCompletedTodos onCleareCompleted={onCleareCompleted} />
     </footer>
   );
 }
