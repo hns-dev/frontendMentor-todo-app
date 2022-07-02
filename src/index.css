@@ -204,6 +204,7 @@ form .form-control.flex {
   justify-content: flex-start;
   align-items: center;
   margin-block: 2rem;
+  border-radius: 5px;
 }
 
 form input[type="text"] {
@@ -219,6 +220,12 @@ form input[type="text"]:focus {
 }
 
 /* List container */
+.list {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
+}
+
 .item {
   --gap: 0;
   padding: 1rem;
@@ -298,10 +305,12 @@ input[type="checkbox"] {
 }
 
 .active-todos-count {
+  border-bottom-left-radius: 5px;
   padding-left: 1rem;
 }
 
 .btn-clear-completed-todos {
+  border-bottom-right-radius: 5px;
   padding-right: 1rem;
   text-align: right;
 }
@@ -309,6 +318,7 @@ input[type="checkbox"] {
 .filter-list {
   --gap: 0;
   justify-content: center;
+  border-radius: 5px;
 }
 
 .filter-list > * {
@@ -328,5 +338,9 @@ input[type="checkbox"] {
   .active-todos-count,
   .filter-list {
     order: -1;
+  }
+
+  .filter-list {
+    border-radius: 0;
   }
 }

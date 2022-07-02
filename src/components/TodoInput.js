@@ -18,7 +18,7 @@ export default function TodoInput({ onAddTodo }) {
 
   return (
     <form onSubmit={onFormSubmit}>
-      <div className="form-control flex surface-color border-radius padding">
+      <div className="form-control flex surface-color padding">
         <div className="checkmark">
           <div className="checkmark-inner"></div>
         </div>
