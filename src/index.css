@@ -37,7 +37,7 @@
   --on-background: hsl(233, 14%, 35%);
   --on-surface-vivid: hsl(234, 39%, 85%);
   --on-surface-dim: hsl(234, 11%, 52%);
-  --light-color: hsl(237, 14%, 26%);
+  --light-color: hsl(235, 19%, 35%);
 
   --shadow-color: hsl(235, 10%, 5%, 0.1);
   --box-shadow: var(--shadow-color) 0px 4px 8px,
