@@ -9,7 +9,7 @@ export default function TodoListFooter({
   onCleareCompleted,
 }) {
   return (
-    <footer className="list-footer flex text-on-background">
+    <footer className="list-footer flex text-on-surface-dim">
       <div className="content flex">
         <ActiveTodosCount todos={todos} />
         <ClearCompletedTodos onCleareCompleted={onCleareCompleted} />
