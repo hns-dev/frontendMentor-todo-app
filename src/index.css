@@ -13,7 +13,8 @@
     hsl(280, 87%, 65%)
   );
 
-  --box-shadow-color: rgba(90, 90, 90, 0.2);
+  --box-shadow: hsl(235, 19%, 35%, 0.5) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
   /* Typography */
   --font-size: 1.125rem;
@@ -34,7 +35,8 @@
   --on-surface-vivid: hsl(234, 39%, 85%);
   --on-surface-dim: hsl(233, 14%, 35%);
 
-  --box-shadow-color: rgba(10, 10, 10, 0.2);
+  --box-shadow: rgba(10, 10, 10, 0.2) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
   /* BG images */
   --bg-desktop: url("./images/bg-desktop-dark.jpg");
@@ -205,6 +207,7 @@ form .form-control.flex {
   align-items: center;
   margin-block: 2rem;
   border-radius: 5px;
+  box-shadow: var(--box-shadow);
 }
 
 form input[type="text"] {
@@ -224,6 +227,8 @@ form input[type="text"]:focus {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   overflow: hidden;
+  /* box-shadow: var(--box-shadow-color) 0px 2px 8px 0px; */
+  box-shadow: var(--box-shadow);
 }
 
 .item {
@@ -292,11 +297,13 @@ input[type="checkbox"] {
 
 /* List footer */
 .list-footer {
+  --gap: 1.5rem;
   flex-direction: column;
 }
 
 .list-footer .content {
   --gap: 0;
+  box-shadow: var(--box-shadow);
 }
 
 .list-footer .content > *,
@@ -319,6 +326,7 @@ input[type="checkbox"] {
   --gap: 0;
   justify-content: center;
   border-radius: 5px;
+  box-shadow: var(--box-shadow);
 }
 
 .filter-list > * {
@@ -329,6 +337,7 @@ input[type="checkbox"] {
   .list-footer {
     --gap: 0;
     flex-direction: row;
+    box-shadow: var(--box-shadow);
   }
 
   .list-footer .content {
@@ -342,5 +351,6 @@ input[type="checkbox"] {
 
   .filter-list {
     border-radius: 0;
+    box-shadow: initial;
   }
 }
