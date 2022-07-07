@@ -2,8 +2,19 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const todoRoutes = require("./routes/todos");
 
 const app = express();
+
+// Middleware
+app.use(express.json());
+
+app.use((req, res, next) => {
+  next();
+});
+
+// Routes
+app.use("/api/todos", todoRoutes);
 
 // Connect to the database
 mongoose
