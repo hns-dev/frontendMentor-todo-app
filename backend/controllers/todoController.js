@@ -38,6 +38,15 @@ const deleteTodo = async (req, res) => {
   res.status(200).json(todo);
 };
 
+// Delete completed todos
+const deleteCompletedTodos = async (req, res) => {
+  const todos = await Todo.deleteMany({ completed: true });
+
+  if (!todos) return res.status(400).json({ error: "No completed todos" });
+
+  res.status(200).json(todos);
+};
+
 // Update a todo
 const updateTodo = async (req, res) => {
   const { id } = req.params;
@@ -57,5 +66,6 @@ module.exports = {
   getTodos,
   createTodo,
   deleteTodo,
+  deleteCompletedTodos,
   updateTodo,
 };
