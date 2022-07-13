@@ -1,7 +1,9 @@
 import React from "react";
 
 export default function ActiveTodosNumber({ todos }) {
-  const activeTodos = todos.filter((todo) => !todo.completed).length;
+  const activeTodos = todos
+    ? todos.filter((todo) => !todo.completed).length
+    : 0;
   return (
     <p className="active-todos-count surface-color padding-y">
       {activeTodos}
