@@ -1,13 +1,37 @@
 import { Draggable } from "react-beautiful-dnd";
+import { useTodosContext } from "../hooks/useTodosContext";
 
-export default function todo({
-  todo,
-  onDeleteTodo,
-  onTodoStatusChange,
-  index,
-}) {
+export default function Todo({ todo, index }) {
+  const { dispatch } = useTodosContext();
+
+  const handleTodoStatusChange = async (id, completed) => {
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ completed: !completed }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "UPDATE_TODO", payload: json });
+    }
+  };
+
+  const handleDeleteTodo = async (id) => {
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "DELETE",
+    });
+
+    const json = await response.json();
+
+    if (response.ok) dispatch({ type: "DELETE_TODO", payload: json });
+  };
+
   return (
-    <Draggable key={todo.title} draggableId={todo.title} index={index}>
+    <Draggable key={todo._id} draggableId={todo._id} index={index}>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -18,7 +42,7 @@ export default function todo({
           {/* Checkbox Button */}
           <div
             className={`btn checkmark ${todo.completed ? "completed" : ""}`}
-            onClick={() => onTodoStatusChange(todo.title)}
+            onClick={() => handleTodoStatusChange(todo._id, todo.completed)}
           >
             {todo.completed ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
@@ -37,13 +61,13 @@ export default function todo({
 
           {/* Todo content*/}
           <span className={`todo-content ${todo.completed ? "completed" : ""}`}>
-            {todo.title}
+            {todo.content}
           </span>
 
           {/* Delete Button */}
           <button
             className="btn cross-icon push"
-            onClick={() => onDeleteTodo(todo.title)}
+            onClick={() => handleDeleteTodo(todo._id)}
           >
             <svg
               className="delete-icon"
