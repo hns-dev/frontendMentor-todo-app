@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTodosContext } from "../hooks/useTodosContext";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 import TodoListFooter from "./TodoListFooter";
@@ -7,66 +8,60 @@ export default function FilterableTodoList() {
   /* ------------------- */
   /* States              */
   /* ------------------- */
+  const { todos, dispatch } = useTodosContext();
 
-  const [todoList, setTodoList] = useState(() => {
-    const localData = localStorage.getItem("todoList");
-    return localData ? JSON.parse(localData) : [];
-  });
+  // const [todoList, setTodoList] = useState(() => {
+  //   const localData = localStorage.getItem("todoList");
+  //   return localData ? JSON.parse(localData) : [];
+  // });
 
   const [filterOption, setFilterOption] = useState("All");
 
   /* ------------------- */
   /* Effects             */
   /* ------------------- */
-
   useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-  }, [todoList]);
+    const fetchTodos = async () => {
+      const response = await fetch("/api/todos");
+      const json = await response.json();
+
+      if (response.ok) dispatch({ type: "SET_TODOS", payload: json });
+    };
+
+    fetchTodos();
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("todoList", JSON.stringify(todoList));
+  // }, [todoList]);
 
   /* ------------------- */
   /* Functions           */
   /* ------------------- */
 
   // Add todo to the list
-  const handleAddTodo = async (userInputTodo) => {
-    setTodoList([...todoList, userInputTodo]);
-  };
+  // const handleAddTodo = async (userInputTodo) => {
+  //   setTodoList([...todoList, userInputTodo]);
+  // };
 
   // Delete todo from the list
-  const handleDeleteTodo = async (title) => {
-    setTodoList(todoList.filter((todo) => todo.title !== title));
-  };
+  // const handleDeleteTodo = async (title) => {
+  //   setTodoList(todoList.filter((todo) => todo.title !== title));
+  // };
 
   // Delete all completed todos
-  const handleclearCompleted = () => {
-    setTodoList(todoList.filter((todo) => !todo.completed));
-  };
+  // const handleclearCompleted = () => {
+  //   setTodoList(todoList.filter((todo) => !todo.completed));
+  // };
 
   // Update todo's status
-  const handleTodoStatus = async (title) => {
-    setTodoList(
-      todoList.map((todo) =>
-        todo.title === title ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  // Filter todo list
-  const filterTodolist = () => {
-    let todos = [];
-
-    todoList.forEach((todo) => {
-      if (filterOption === "Active") {
-        todos = todoList.filter((todo) => !todo.completed);
-      } else if (filterOption === "Completed") {
-        todos = todoList.filter((todo) => todo.completed);
-      } else {
-        todos = [...todoList];
-      }
-    });
-
-    return todos;
-  };
+  // const handleTodoStatus = async (title) => {
+  //   setTodoList(
+  //     todoList.map((todo) =>
+  //       todo.title === title ? { ...todo, completed: !todo.completed } : todo
+  //     )
+  //   );
+  // };
 
   // handle filter options change
   function handleFilterOptionChange(filterText) {
@@ -88,29 +83,28 @@ export default function FilterableTodoList() {
       return;
     }
 
-    const newList = Array.from(todoList);
+    const newList = Array.from(todos);
     const [draggableItem] = newList.splice(source.index, 1);
     newList.splice(destination.index, 0, draggableItem);
 
-    setTodoList(newList);
+    dispatch({ type: "SET_TODOS", payload: newList });
+    // setTodoList(newList);
   }
 
   return (
     <main className="main-content">
       <div className="container">
-        <TodoInput onAddTodo={handleAddTodo} />
+        <TodoInput />
 
         <TodoList
           onDragEnd={handleOnDragEnd}
-          todos={filterTodolist()}
-          onDeleteTodo={handleDeleteTodo}
-          onTodoStatusChange={handleTodoStatus}
+          todos={todos}
+          filterOption={filterOption}
         />
         <TodoListFooter
-          todos={todoList}
+          todos={todos}
           onFilterChange={handleFilterOptionChange}
           filterOption={filterOption}
-          onCleareCompleted={handleclearCompleted}
         />
 
         <p className="msg msg-margin text-center text-on-surface-dim">
