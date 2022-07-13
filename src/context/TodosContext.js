@@ -16,10 +16,14 @@ export const todosReducer = (state, action) => {
       return {
         todos: state.todos.filter((todo) => todo._id !== action.payload._id),
       };
+    case "DELETE_COMPLETED_TODOS":
+      return {
+        todos: state.todos.filter((todo) => !todo.completed),
+      };
     case "UPDATE_TODO":
       return {
         todos: state.todos.map((todo) =>
-          todo.title === action.payload.content
+          todo._id === action.payload._id
             ? { ...todo, completed: !todo.completed }
             : todo
         ),
