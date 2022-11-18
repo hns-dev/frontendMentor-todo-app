@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://frontend-mentor-todo-app-rho.vercel.app/)
+- Live Site URL: [Todo App](https://frontend-mentor-todo-app-rho.vercel.app/)
 
 ## My process
 
