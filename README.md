@@ -10,6 +10,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+  - [Useful resources](#useful-resources)
 
 ## Overview
 
@@ -46,3 +47,7 @@ Users should be able to:
 - Mobile-first workflow
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - To implement drag-and-drop feature
 - localStorage - To save user's todo list and color theme preference
+
+### Useful resources
+
+- [Less Absolute Positioning With Modern CSS](https://ishadeed.com/article/less-absolute-positioning-modern-css/) - This helped me tackle the change of position of the filtering component on different screen sizes easily, using display: content.
